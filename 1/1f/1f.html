@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Basics</title>
+    <script src="1d.js"></script>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <!-- import React  -->
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <!-- get babel to compile JSX -->
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+        
+        //calculation
+        const productCost = 10 + 8 * 2;
+        const shippingCost = 5;
+        console.log(productCost);
+        console.log(shippingCost);
+        //Create structure
+        const div = (
+            <div>
+                <p>Product cost: ${productCost + shippingCost}</p>
+                <p>Shipping cost: ${shippingCost}</p>
+                <p>Total cost: ${productCost + shippingCost}</p>
+                <button>Place your order</button>
+            </div>
+        );
+        //select continer
+        const container = document.querySelector('.js-container');
+        //use the container variable inside the specified div
+        ReactDOM.createRoot(container).render(div);
+    </script>
+  </body>
+</html>

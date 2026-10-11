@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Basics</title>
+    <script src="1d.js"></script>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <!-- import React  -->
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <!-- get babel to compile JSX -->
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+        
+        //Create a component : function name must start with a captial, added placeholder
+        function Input1({message}) {
+          return (
+          <>
+            {message}
+          </> 
+          );
+        }
+
+        function LoginForm() {
+          return (
+            <>
+                <div>
+                    <input 
+                    placeholder="Email" 
+                    size="15" 
+                    />
+                </div>
+                <div>
+                    <input 
+                    placeholder="Password" 
+                    size="15" 
+                    type="password"
+                    />
+                </div>
+                <div>
+                    <button>Login</button>
+                    <button>Sign up</button>
+                </div>
+            </> 
+          );
+        }
+
+        function App() {
+          return (
+            <>
+              <Input1 
+                message="Hello, welcome to my website" 
+              />
+              <LoginForm />
+            </>
+          );
+        }
+
+        const container = document.querySelector('.js-container');
+        //use the container variable inside the specified div
+        ReactDOM.createRoot(container).render(<App />);
+    </script>
+  </body>
+</html>

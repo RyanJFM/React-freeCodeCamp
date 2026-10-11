@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Basics</title>
+    <script src="1d.js"></script>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <!-- import React  -->
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <!-- get babel to compile JSX -->
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+        
+
+        function ProductDetails({message ,price, discountPrice, imageSrc}) {
+
+            //add image
+            const src = imageSrc;
+            const new_price = parseFloat(discountPrice) > 0? <del>{price}</del>:price;
+            
+            return (
+            <>
+                <div>
+                    <img src={src} width="100"/>
+                </div>
+                <div>
+                    <p>{message}</p>
+                </div>
+                <div>
+                    <p>Price: ${new_price}</p>
+                </div>
+                <div>
+                    {discountPrice !== '0' && (<p>Discount price: ${discountPrice}</p>)}
+                </div>
+                <div>
+                    <button>Add to Cart</button>
+                </div>
+            </> 
+          );
+        }
+
+        function App() {
+          return (
+            <>
+              <ProductDetails
+                imageSrc="cotton-socks.png"
+                message="Cotton socks" 
+                price="10.90"
+                discountPrice= "5.45"
+              />
+              <ProductDetails
+                imageSrc="tennis-balls.png"
+                message="Tennis balls" 
+                price="6.00"
+                discountPrice= "0"
+              />
+              <ProductDetails
+                imageSrc="plain-t-shirt.png"
+                message="Plain T-Shirt" 
+                price="7.99"
+                discountPrice= "0"
+              />
+            </>
+          );
+        }
+
+        const container = document.querySelector('.js-container');
+        //use the container variable inside the specified div
+        ReactDOM.createRoot(container).render(<App />);
+    </script>
+  </body>
+</html>

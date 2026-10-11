@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Basics</title>
+    <script src="1j.js"></script>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <!-- import date  -->
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+
+    <!-- import React  -->
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <!-- get babel to compile JSX -->
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+        
+        //select continer
+        const container = document.querySelector('.js-container');
+        //use the container variable inside the specified div\
+        const root = ReactDOM.createRoot(container);
+        //use SetInterval
+        setInterval(() => {
+          //get date
+          const date = dayjs().format('HH:mm:ss');
+          //Create structure
+          const div = (
+            <div>
+                <p>Current time is : {date}</p>
+            </div>
+        );
+        //update every second
+          root.render(div);
+        }, 1000);
+        
+    </script>
+  </body>
+</html>

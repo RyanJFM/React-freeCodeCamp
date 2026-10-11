@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CSS</title>
+    <style>
+        .email-input {
+            margin-bottom: 10px;
+            border-radius: 10px;
+            padding: 5px 25px;
+            border-width: 0.5px;
+        }
+        .password-input {
+            margin-bottom: 10px;
+            border-radius: 10px;
+            padding: 5px 25px;
+            border-width: 0.5px;
+        }
+        .login-button {
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 30px;
+            background-color: rgb(100, 140, 205);
+            cursor: pointer;
+        }
+        .sign-up-button {
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 30px;
+            background-color: rgb(100, 140, 205);
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        .hide-button {
+            color: black;
+            border-radius: 5px;
+            padding: 2px 5px;
+            background-color: azure;
+            margin-left: 10px;
+            cursor: pointer;
+            border-width: 0.5px;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <!-- import date  -->
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+
+    <!-- import React  -->
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <!-- get babel to compile JSX -->
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">  
+        
+        function TimeBox() {
+            const [count, setCount] = React.useState(0);
+            const [auto, setAuto] = React.useState(false);
+
+            React.useEffect(() => {
+                if (!auto) return;
+
+                const intervalId = setInterval(() => {
+                    setCount(prev => prev + 1);
+                }, 1000);
+
+                return () => clearInterval(intervalId);
+            }, [auto]);
+
+
+            function increment() {
+                setCount(count + 1);
+            }
+            function reset() {
+                setCount(0);
+            }
+            function autoClick() {
+                setAuto(!auto);
+            }
+            return (
+                <>
+                    <button
+                        onClick={increment}
+                    >Clicked {count} times</button>
+                    <button
+                        onClick={reset}
+                    >Reset</button>
+                    <button
+                        onClick={autoClick}
+                    >Auto Click</button>
+                </>
+            );
+        }
+        
+        function App() {
+            return (
+                <TimeBox />
+            );
+        }    
+        //select continer
+        const container = document.querySelector('.js-container');
+        //use the container variable inside the specified div
+        ReactDOM.createRoot(container).render(<App />);
+    </script>
+  </body>
+</html>

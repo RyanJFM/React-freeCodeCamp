@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Basics</title>
+    <script src="1d.js"></script>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <!-- import React  -->
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <!-- chatbot lib  -->
+    <script src="https://unpkg.com/supersimpledev/chatbot.js"></script>
+
+    <!-- get babel to compile JSX -->
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+        
+        //Create a component : function name must start with a captial, added placeholder
+        function ChatInput({ chatMessages, setChatMessages }) {
+          const [inputText, setInputText] = React.useState('');
+          
+          function handleKeyDown(event) {
+            if (event.key === "Enter") {
+                sendMessage();
+            }
+            if (event.key === "Escape") {
+                setInputText("");
+            }
+          }
+
+          function saveInputText(event) { 
+            setInputText(event.target.value);
+          }
+
+          function sendMessage(event) {
+            const newChatMessages = [
+              ...chatMessages,
+              {
+                message: inputText,
+                sender: 'user',
+                id: crypto.randomUUID()
+              }
+            ]
+
+            setChatMessages(newChatMessages);
+
+            const response = Chatbot.getResponse(inputText);
+            setChatMessages([
+              ...newChatMessages,
+              {
+                message: response,
+                sender: 'robot',
+                id: crypto.randomUUID()
+              }
+            ]);
+
+            setInputText('');
+          }
+
+          return (
+          <>
+            <input 
+              placeholder="Send a message to chatbot" 
+              size="30" 
+              onChange={saveInputText}
+              onKeyDown={handleKeyDown}
+              value={inputText}
+            />
+            <button
+              onClick={sendMessage}
+            >Send</button>
+          </> 
+          );
+        }
+
+        
+        function ChatMessage({ message, sender }) {
+          return (
+            <div>
+              {sender === 'robot' && (<img src="avatar_default_4.webp" width="50"/>)}
+              {message}
+              {sender === 'user' && (
+                <img src="default-pfp-15.webp" width="50"/>
+              )}
+            </div>
+          );
+        } 
+        
+
+        function ChatMessages({ chatMessages }) {
+          return (
+            <>
+
+              {chatMessages.map((chatMessage) => {
+                return (
+                  <ChatMessage 
+                    message={chatMessage.message}
+                    sender={chatMessage.sender}
+                    key={chatMessage.id}
+                  />
+                );
+              })}
+            </>
+          )
+        }
+
+        function App() {
+          // Array destructing 
+          const [chatMessages, setChatMessages] = React.useState(
+            [{
+              message: "hello chatbot",
+              sender: "user",
+              id: 'id1'
+              }, {
+              message: "Hello! How can I help you?",
+              sender: "robot",
+              id: 'id2'
+              }, {
+              message: "Can you get me today date?",
+              sender: "user",
+              id: 'id3'
+              }, {
+              message: "Today is 4th of August",
+              sender: "robot",
+              id: 'id4'
+            }]
+          );
+          
+          return (
+            <>
+              <ChatInput
+                chatMessages = {chatMessages}
+                setChatMessages = {setChatMessages}
+              />
+              <ChatMessages 
+                chatMessages={chatMessages}
+              />
+            </>
+          );
+        }
+        
+        //select continer
+        const container = document.querySelector('.js-container');
+        //use the container variable inside the specified div
+        ReactDOM.createRoot(container).render(<App />);
+    </script>
+  </body>
+</html>

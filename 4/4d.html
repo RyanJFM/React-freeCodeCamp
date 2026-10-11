@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CSS</title>
+    <style>
+        .email-input {
+            margin-bottom: 10px;
+            border-radius: 10px;
+            padding: 5px 25px;
+            border-width: 0.5px;
+        }
+        .password-input {
+            margin-bottom: 10px;
+            border-radius: 10px;
+            padding: 5px 25px;
+            border-width: 0.5px;
+        }
+        .login-button {
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 30px;
+            background-color: rgb(100, 140, 205);
+            cursor: pointer;
+        }
+        .sign-up-button {
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 30px;
+            background-color: rgb(100, 140, 205);
+            margin-left: 10px;
+            cursor: pointer;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <!-- import React  -->
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <!-- get babel to compile JSX -->
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">  
+        
+        function TextBox() {
+            return (
+                <>
+                    <h2>Hello, Welcome to my website</h2>
+                    <div>
+                        <input type="text" placeholder="Email" className="email-input"/>
+                    </div>
+                    <div>
+                        <input type="password" placeholder="Password" className="password-input"/>
+                    </div>
+                </>
+            );
+        }
+        
+        function Buttons() {
+            return (
+                <>
+                    <button className="login-button">Login</button>
+                    <button className="sign-up-button">Sign up</button>
+                </>
+            );
+        }
+        function App() {
+            return (
+                <div>
+                    <TextBox />
+                    <Buttons />
+                </div>
+            );
+        }    
+        //select continer
+        const container = document.querySelector('.js-container');
+        //use the container variable inside the specified div
+        ReactDOM.createRoot(container).render(<App />);
+    </script>
+  </body>
+</html>

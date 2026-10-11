@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Basics</title>
+    <script src="1d.js"></script>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <!-- import date  -->
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+
+    <!-- import React  -->
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <!-- get babel to compile JSX -->
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+        
+        //get date
+        const date = dayjs().format('MMMM D, YYYY');
+        console.log(date);
+        
+    </script>
+  </body>
+</html>

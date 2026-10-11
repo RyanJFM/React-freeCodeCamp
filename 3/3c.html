@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>State Event handlers chatbot project features</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <!-- import React  -->
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <!-- get babel to compile JSX -->
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">  
+        function ClickableButton() {
+            // set the variable that changes
+            const [count, setCount] = React.useState(0);
+            const message = count === 1? "time":"times";
+            // set the new state for the variable
+            function increment() {
+                setCount(count + 1);
+            }
+            // create button
+            return (
+            <button
+                onClick={increment}
+            >Clicked {count} {message}</button>
+            );
+        }
+        function App() {
+            return (
+                <div>
+                    <ClickableButton />
+                </div>
+            );
+        }    
+        //select continer
+        const container = document.querySelector('.js-container');
+        //use the container variable inside the specified div
+        ReactDOM.createRoot(container).render(<App />);
+    </script>
+  </body>
+</html>

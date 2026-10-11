@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CSS</title>
+    <style>
+        .button-on {
+            background-color: rgb(25, 135, 84);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 15px 25px;
+            cursor: pointer;
+        }
+        .button-off {
+            background-color: rgb(220, 53, 69);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 15px 25px;
+            cursor: pointer;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <!-- import React  -->
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <!-- get babel to compile JSX -->
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">  
+        function ClickableButton() {
+            //state
+            const [isButtonOn, setIsButtonOn] = React.useState(false);
+
+            function toggleButton() {
+                setIsButtonOn(isButtonOn == false? true:false);
+            }
+            if (isButtonOn === true) {
+                return (
+                <button className="button-on"
+                    onClick={toggleButton}
+                >ON</button>
+                )
+            }
+            return (
+                <button className="button-off"
+                    onClick={toggleButton}
+                >OFF</button>
+            )
+        }
+        function App() {
+            return (
+                <div>
+                    <ClickableButton />
+                </div>
+            );
+        }    
+        //select continer
+        const container = document.querySelector('.js-container');
+        //use the container variable inside the specified div
+        ReactDOM.createRoot(container).render(<App />);
+    </script>
+  </body>
+</html>
